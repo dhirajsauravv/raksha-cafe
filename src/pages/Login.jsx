@@ -1,13 +1,29 @@
-import { Link } from "react-router";
+import { useState } from "react";
 
 function Login() {
+  const [isRegistering, setIsRegistering] = useState(false);
+
+  const handleClick = () => {
+    setIsRegistering(!isRegistering);
+  };
+
   return (
     <div>
       <div className="flex flex-col items-center">
         <div>
-          <h1>Login</h1>
+          <h1>{isRegistering ? "Sign Up" : "Sign In"}</h1>
         </div>
         <form action="">
+          {isRegistering && (
+            <div>
+              <label htmlFor="">Name: </label>
+              <input
+                type="text"
+                placeholder="Enter your name"
+                className="border"
+              />
+            </div>
+          )}
           <div className="py-4">
             <label htmlFor="email">Email Address: </label>
             <input
@@ -29,16 +45,20 @@ function Login() {
           </div>
 
           <button type="submit" className="border">
-            Sign In
+            {isRegistering ? "Sign Up" : "Sign In"}
           </button>
 
           <p>
-            Don't have account?{" "}
-            <Link to="/Register">
-              <button type="button" className="text-amber-600 font-bold">
-                Register
-              </button>
-            </Link>
+            {isRegistering
+              ? "Already have an account?"
+              : "Don't have an account?"}
+            <button
+              type="button"
+              className="text-amber-600 font-bold"
+              onClick={handleClick}
+            >
+              {isRegistering ? "Sign In" : "Sign Up"}
+            </button>
           </p>
         </form>
       </div>

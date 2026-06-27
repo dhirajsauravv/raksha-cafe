@@ -8,7 +8,6 @@ import Order from "./pages/Order";
 import Checkout from "./pages/Checkout";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Register from "./pages/Register";
 
 function App() {
   return (
@@ -22,7 +21,6 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/order" element={<Order />} />
-        <Route path="/register" element={<Register />} />
       </Routes>
 
       <Footer />
