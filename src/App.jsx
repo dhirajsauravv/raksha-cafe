@@ -14,15 +14,16 @@ function App() {
     <BrowserRouter>
       <Navbar />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/menu" element={<Menu />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/order" element={<Order />} />
-      </Routes>
-
+      <div className="container mx-auto py-4">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/order" element={<Order />} />
+        </Routes>
+      </div>
       <Footer />
     </BrowserRouter>
   );
