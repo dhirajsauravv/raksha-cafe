@@ -7,12 +7,13 @@ import Menu from "./pages/Menu";
 import Order from "./pages/Order";
 import Checkout from "./pages/Checkout";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Register from "./pages/Register";
 
 function App() {
   return (
     <BrowserRouter>
       <Navbar />
-      <div className="p-5">Hello World!</div>
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -21,7 +22,10 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/order" element={<Order />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
+
+      <Footer />
     </BrowserRouter>
   );
 }
