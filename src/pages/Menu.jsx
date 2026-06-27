@@ -1,15 +1,34 @@
+import { useEffect, useState } from "react";
 import MenuCard from "../components/MenuCard";
+import { getMenuItems } from "../services/menu";
 
 function Menu() {
+  const [menuData, setMenuData] = useState([]);
+
+  async function loadMenuData() {
+    try {
+      const response = await getMenuItems();
+      setMenuData(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    loadMenuData();
+  }, []);
   return (
     <div>
       <div className="grid grid-cols-3 gap-4">
-        <MenuCard imageURL="https://images.unsplash.com/photo-1781989302296-805b5a8a2f2e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw0fHx8ZW58MHx8fHx8" />
-        <MenuCard imageURL="https://images.unsplash.com/photo-1781989302296-805b5a8a2f2e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw0fHx8ZW58MHx8fHx8" />
-        <MenuCard imageURL="https://images.unsplash.com/photo-1781989302296-805b5a8a2f2e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw0fHx8ZW58MHx8fHx8" />
-        <MenuCard imageURL="https://images.unsplash.com/photo-1781989302296-805b5a8a2f2e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw0fHx8ZW58MHx8fHx8" />
-        <MenuCard imageURL="https://images.unsplash.com/photo-1781989302296-805b5a8a2f2e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw0fHx8ZW58MHx8fHx8" />
-        <MenuCard imageURL="https://images.unsplash.com/photo-1781989302296-805b5a8a2f2e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw0fHx8ZW58MHx8fHx8" />
+        {menuData.map((menuItem, id) => (
+          <MenuCard
+            key={"menuItem" + id}
+            imageURL={menuItem.image}
+            itemName={menuItem.name}
+            price={menuItem.price}
+            description={menuItem.description}
+          />
+        ))}
       </div>
     </div>
   );
