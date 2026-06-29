@@ -10,56 +10,62 @@ function Login() {
   return (
     <div>
       <div className="flex flex-col items-center">
-        <div>
-          <h1>{isRegistering ? "Sign Up" : "Sign In"}</h1>
-        </div>
-        <form action="">
+        <form className="border text-center rounded-2xl p-4 bg-amber-100">
+          <div className="">
+            <h1>{isRegistering ? "Sign Up" : "Sign In"}</h1>
+          </div>
           {isRegistering && (
-            <div>
+            <div className="flex justify-between pt-4">
               <label htmlFor="">Name: </label>
               <input
                 type="text"
                 placeholder="Enter your name"
-                className="border"
+                className="border text-center"
               />
             </div>
           )}
-          <div className="py-4">
-            <label htmlFor="email">Email Address: </label>
+          <div className="py-4 flex justify-between">
+            <label className="pr-2">Email Address: </label>
             <input
-              className="border"
+              className="border text-center"
               type="email"
               placeholder="Enter your email"
               id="email"
             />
           </div>
-          <div>
+          <div className="pb-4 flex justify-between">
             <label htmlFor="password">Password: </label>
 
             <input
-              className="border"
+              className="border text-center"
               type="password"
               placeholder="Enter your password"
               id="password"
             />
           </div>
-
-          <button type="submit" className="border">
-            {isRegistering ? "Sign Up" : "Sign In"}
-          </button>
-
-          <p>
-            {isRegistering
-              ? "Already have an account?"
-              : "Don't have an account?"}
+          <div className="flex justify-center pb-4 ">
             <button
-              type="button"
-              className="text-amber-600 font-bold"
-              onClick={handleClick}
+              type="submit"
+              className="border flex justify-center rounded-full px-2"
             >
-              {isRegistering ? "Sign In" : "Sign Up"}
+              {isRegistering ? "Sign Up" : "Sign In"}
             </button>
-          </p>
+          </div>
+
+          <div className="flex justify-center">
+            <p>
+              {isRegistering
+                ? "Already have an account?"
+                : "Don't have an account?"}
+              <button
+                type="button"
+                className="text-amber-600 font-bold"
+                onClick={handleClick}
+              >
+                {isRegistering ? "Sign In" : "Sign Up"}
+              </button>
+            </p>
+          </div>
         </form>
       </div>
     </div>

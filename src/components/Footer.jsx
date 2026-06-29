@@ -1,12 +1,10 @@
 function Footer() {
   return (
-    <div>
-      <footer>
-        <div className="grid grid-cols-3">
-          <div>Social Media</div>
-          <div>Contact Us</div>
-          <div>Road to visit us</div>
-        </div>
+    <div className="bg-amber-100">
+      <footer className="flex justify-between ">
+        <div className="flex items-center">Social Media</div>
+        <div>Contact Us</div>
+        <div>Road to visit us</div>
       </footer>
     </div>
   );
