@@ -31,7 +31,7 @@ function Login() {
               Email Address:{" "}
             </label>
             <input
-              className="border rounded-lg text-center bg-amber-50"
+              className="border rounded-lg text-center bg-amber-50 "
               type="email"
               placeholder="Enter your email"
               id="email"
@@ -50,7 +50,7 @@ function Login() {
           <div className="flex justify-center py-8 ">
             <button
               type="submit"
-              className="border-2 border-amber-400 bg-amber-400 flex justify-center rounded-full px-2"
+              className="border-2 border-amber-400 bg-amber-400 flex justify-center rounded-full px-2  hover:bg-amber-400/75 hover:scale-105 ease-in-out duration-300"
             >
               {isRegistering ? "Sign Up" : "Sign In"}
             </button>
@@ -59,11 +59,11 @@ function Login() {
           <div className="flex justify-center">
             <p>
               {isRegistering
-                ? "Already have an account?"
-                : "Don't have an account?"}
+                ? "Already have an account? "
+                : "Don't have an account? "}
               <button
                 type="button"
-                className="text-amber-600 font-bold"
+                className="text-amber-600 font-bold hover:scale-105"
                 onClick={handleClick}
               >
                 {isRegistering ? "Sign In" : "Sign Up"}
