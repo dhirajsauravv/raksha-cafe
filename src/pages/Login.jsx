@@ -10,43 +10,47 @@ function Login() {
   return (
     <div>
       <div className="flex flex-col items-center">
-        <form className="border text-center rounded-2xl p-4 bg-amber-100">
+        <form className="border-2 w-100  border-amber-800 text-center rounded-2xl p-4 bg-amber-100 text-lg shadow-2xl">
           <div className="">
-            <h1>{isRegistering ? "Sign Up" : "Sign In"}</h1>
+            <h1 className="text-center text-3xl text-amber-700 pb-7 font-bold">
+              {isRegistering ? "Sign Up" : "Sign In"}
+            </h1>
           </div>
           {isRegistering && (
             <div className="flex justify-between pt-4">
-              <label htmlFor="">Name: </label>
+              <label className="font-bold text-amber-500">Name: </label>
               <input
                 type="text"
                 placeholder="Enter your name"
-                className="border text-center"
+                className="border rounded-lg text-center bg-amber-50"
               />
             </div>
           )}
-          <div className="py-4 flex justify-between">
-            <label className="pr-2">Email Address: </label>
+          <div className="py-4 flex justify-between ">
+            <label className="pr-2 font-bold text-amber-500">
+              Email Address:{" "}
+            </label>
             <input
-              className="border text-center"
+              className="border rounded-lg text-center bg-amber-50"
               type="email"
               placeholder="Enter your email"
               id="email"
             />
           </div>
-          <div className="pb-4 flex justify-between">
-            <label htmlFor="password">Password: </label>
+          <div className="pb-4 flex justify-between ">
+            <label className="font-bold text-amber-500">Password: </label>
 
             <input
-              className="border text-center"
+              className="border rounded-lg text-center bg-amber-50"
               type="password"
               placeholder="Enter your password"
               id="password"
             />
           </div>
-          <div className="flex justify-center pb-4 ">
+          <div className="flex justify-center py-8 ">
             <button
               type="submit"
-              className="border flex justify-center rounded-full px-2"
+              className="border-2 border-amber-400 bg-amber-400 flex justify-center rounded-full px-2"
             >
               {isRegistering ? "Sign Up" : "Sign In"}
             </button>

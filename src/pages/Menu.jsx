@@ -19,15 +19,12 @@ function Menu() {
   }, []);
   return (
     <div>
+      <h1 className="text-center text-5xl text-amber-700 pb-7 font-bold">
+        The Menu
+      </h1>
       <div className="grid grid-cols-3 gap-4">
         {menuData.map((menuItem, id) => (
-          <MenuCard
-            key={"menuItem" + id}
-            imageURL={menuItem.image}
-            itemName={menuItem.name}
-            price={menuItem.price}
-            description={menuItem.description}
-          />
+          <MenuCard key={"menuItem" + id} item={menuItem} />
         ))}
       </div>
     </div>
