@@ -1,5 +1,5 @@
 import CartContext from "./CartContext.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
 
@@ -20,13 +20,24 @@ function CartProvider({ children }) {
         const newCart = [...prev];
         newCart.splice(itemFound, 1, newItem);
 
+        localStorage.setItem("cartData", JSON.stringify(newCart));
+
         return newCart;
       });
     } else {
       const cartItem = { ...item, quantity: 1 };
-      setCart((prev) => [...prev, cartItem]);
+      setCart((prev) => {
+        const newCart = [...prev, cartItem];
+        localStorage.setItem("cartData", JSON.stringify(newCart));
+        return newCart;
+      });
     }
   }
+
+  useEffect(() => {
+    const cartData = localStorage.getItem("cartData");
+    setCart(cartData ? JSON.parse(cartData) : []);
+  }, []);
 
   return (
     <CartContext.Provider value={{ cart, handleAddToCart }}>
