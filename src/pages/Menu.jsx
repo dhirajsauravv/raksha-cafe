@@ -18,11 +18,11 @@ function Menu() {
     loadMenuData();
   }, []);
   return (
-    <div>
+    <div className="px-10">
       <h1 className="text-center text-5xl text-amber-700 pb-7 font-bold">
         The Menu
       </h1>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-3 gap-6">
         {menuData.map((menuItem, id) => (
           <MenuCard key={"menuItem" + id} item={menuItem} />
         ))}
