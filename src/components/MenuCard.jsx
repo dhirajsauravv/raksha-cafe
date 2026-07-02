@@ -9,8 +9,8 @@ function MenuCard({ item }) {
         <img src={item.image} className="h-full object-cover w-full" />
       </div>
       <div className="p-4 flex flex-col h-1/2">
-        <div className="flex flex-none justify-between h-max text-xl ">
-          <h1 className=" ">{item.name}</h1>
+        <div className="flex flex-none justify-between h-max text-xl font-bold text-amber-700">
+          <h1>{item.name}</h1>
           <h1 className="text-amber-700 font-bold">₹ {item.price}</h1>
         </div>
         <div className="flex-1 overflow-hidden min-h-0">

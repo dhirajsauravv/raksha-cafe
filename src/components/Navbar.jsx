@@ -9,8 +9,8 @@ function Navbar() {
     <nav className="sticky top-0 z-50 bg-amber-50/85 backdrop-blur-md border-b border-amber-900/10 shadow-md h-20 flex items-center">
       <div className="container flex justify-between items-center w-full">
         <Link to="/" className="flex pl-8">
-          <Coffee className="size{24} pr-1"></Coffee>
-          <span className="text-lg font-bold text-amber-700">Raksha Cafe</span>
+          <Coffee className=" pr-1" size={26}></Coffee>
+          <span className="text-xl font-bold text-amber-700">Raksha Cafe</span>
         </Link>
 
         <div className="flex items-center gap-4">

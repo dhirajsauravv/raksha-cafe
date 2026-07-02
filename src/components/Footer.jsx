@@ -1,12 +1,15 @@
+import { Coffee } from "lucide-react";
 function Footer() {
   return (
-    <div className="bg-amber-100">
-      <footer className="flex justify-between ">
-        <div className="flex items-center">Social Media</div>
-        <div>Contact Us</div>
-        <div>Road to visit us</div>
-      </footer>
-    </div>
+    <footer className="bg-amber-100 flex justify-between p-10 mt-4">
+      <div>
+        <Coffee size={50} />
+        <span className="text-amber-700 font-bold text-3xl">Raksha Cafe</span>
+
+        <p>&copy; All rights reserved</p>
+      </div>
+      <h2>hi</h2>
+    </footer>
   );
 }
 

@@ -14,7 +14,7 @@ function App() {
     <BrowserRouter>
       <Navbar />
 
-      <div className="container mx-auto py-4">
+      <div className="container max-w-full ">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/menu" element={<Menu />} />
