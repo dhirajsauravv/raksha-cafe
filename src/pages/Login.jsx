@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CircleUserRound, Mail, RectangleEllipsis } from "lucide-react";
+import useAuth from "../services/useAuth.js";
+import { useNavigate } from "react-router";
 
 const InputWithIcon = ({ Icon, placeholder, type, name }) => {
   return (
@@ -17,10 +19,34 @@ const InputWithIcon = ({ Icon, placeholder, type, name }) => {
 };
 
 function Login() {
+  const navigate = useNavigate();
+  const { login, register, isLoggedIn } = useAuth();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/");
+    }
+  }, [isLoggedIn]);
+
   const [isRegistering, setIsRegistering] = useState(false);
 
   const handleClick = () => {
     setIsRegistering(!isRegistering);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const password = formData.get("password");
+
+    if (isRegistering) {
+      register(name, email, password);
+    } else {
+      login(email, password);
+    }
   };
 
   return (
@@ -29,7 +55,10 @@ function Login() {
         <h1 className="text-center text-5xl text-amber-700 pt-15 pb-15 font-bold h-1/4">
           {isRegistering ? "Sign Up" : "Sign In"}
         </h1>
-        <form className="flex flex-1 flex-col items-center ">
+        <form
+          className="flex flex-1 flex-col items-center"
+          onSubmit={handleSubmit}
+        >
           {isRegistering && (
             <InputWithIcon
               Icon={CircleUserRound}

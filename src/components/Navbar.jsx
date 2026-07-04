@@ -1,10 +1,14 @@
 import { Link } from "react-router";
 import { Coffee, ShoppingCart, Menu, LogIn } from "lucide-react";
+import useAuth from "../services/useAuth";
 
 import useCart from "../services/useCart";
+import { useEffect } from "react";
 
 function Navbar() {
   const { cart } = useCart();
+  const { isLoggedIn, logout } = useAuth();
+  useEffect(() => console.log(isLoggedIn, "isLogged"), [isLoggedIn]);
 
   let cartQuantityCounter = cart.reduce((acc, cur) => acc + cur.quantity, 0);
 
@@ -54,14 +58,26 @@ function Navbar() {
           </div>
         </Link>
 
-        <Link to="/login">
-          <div className="flex items-center gap-2 bg-amber-200 py-1 pl-1 pr-3 rounded-3xl text-amber-800 hover:scale-105 ease-in-out duration-150">
+        {isLoggedIn ? (
+          <div
+            className="flex items-center gap-2 bg-amber-200 py-1 pl-1 pr-3 rounded-3xl text-amber-800 hover:scale-105 ease-in-out duration-150"
+            onClick={logout}
+          >
             <div className="bg-amber-300 h-9 w-9 items-center rounded-full flex justify-center">
               <LogIn size={25} />
             </div>
-            <p className="font-bold text-xl">Login</p>
+            <p className="font-bold text-xl">Logout</p>
           </div>
-        </Link>
+        ) : (
+          <Link to="/login">
+            <div className="flex items-center gap-2 bg-amber-200 py-1 pl-1 pr-3 rounded-3xl text-amber-800 hover:scale-105 ease-in-out duration-150">
+              <div className="bg-amber-300 h-9 w-9 items-center rounded-full flex justify-center">
+                <LogIn size={25} />
+              </div>
+              <p className="font-bold text-xl">Login</p>
+            </div>
+          </Link>
+        )}
       </div>
     </nav>
   );
