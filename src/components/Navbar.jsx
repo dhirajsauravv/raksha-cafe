@@ -5,28 +5,63 @@ import useCart from "../services/useCart";
 
 function Navbar() {
   const { cart } = useCart();
+
+  let cartQuantityCounter = cart.reduce((acc, cur) => acc + cur.quantity, 0);
+
+  let cartQuantity;
+  if (cartQuantityCounter == 0) {
+    cartQuantity = null;
+  } else {
+    cartQuantity = cartQuantityCounter;
+  }
+
   return (
-    <nav className="sticky top-0 z-50 bg-amber-50/85 backdrop-blur-md border-b border-amber-900/10 shadow-md h-20 flex items-center">
-      <div className="container flex justify-between items-center w-full">
-        <Link to="/" className="flex pl-8">
-          <Coffee className=" pr-1" size={26}></Coffee>
-          <span className="text-xl font-bold text-amber-700">Raksha Cafe</span>
+    <nav
+      className="sticky top-0 z-50 bg-amber-50 backdrop-blur-md h-20 flex justify-between
+    items-center px-30"
+    >
+      <Link to="/">
+        <div className="flex items-center gap-2">
+          <Coffee className="" size={40} />
+          <p className="text-3xl font-bold text-amber-700">Raksha Cafe</p>
+        </div>
+      </Link>
+
+      <div className="flex items-center gap-10">
+        <Link to="/menu">
+          <div className="flex items-center gap-2 bg-amber-200 py-1 pl-1 pr-3 rounded-3xl text-amber-800 hover:scale-105 ease-in-out duration-150">
+            <div className="bg-amber-300 h-9 w-9 items-center rounded-full flex justify-center">
+              <Menu size={25} />
+            </div>
+            <p className="font-bold text-xl">Menu</p>
+          </div>
         </Link>
 
-        <div className="flex items-center gap-4">
-          <Link to="/menu" className="flex">
-            <Menu className="size{24} pr-1" />
-            Menu
-          </Link>
-          <Link to="/cart" className="flex">
-            <ShoppingCart className="size{24} pr-1" />
-            Cart {cart.reduce((acc, cur) => acc + cur.quantity, 0)}
-          </Link>
-          <Link to="/login" className="flex">
-            <LogIn className="size{24} pr-1" />
-            Login
-          </Link>
-        </div>
+        <Link to="/cart">
+          <div className="flex items-center gap-2 bg-amber-200 py-1 pl-1 pr-3 rounded-3xl text-amber-800 hover:scale-105 ease-in-out duration-150">
+            <div className="bg-amber-300 h-9 w-9 items-center rounded-full flex justify-center">
+              <ShoppingCart size={25} />
+            </div>
+            <p className="font-bold text-xl z-10 relative">
+              Cart{" "}
+              {cartQuantity > 0 && (
+                <sup className="absolute -top-3 -right-4 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                  {" "}
+                  {cartQuantity}
+                </sup>
+              )}
+            </p>
+          </div>
+        </Link>
+
+        <Link to="/login">
+          <div className="flex items-center gap-2 bg-amber-200 py-1 pl-1 pr-3 rounded-3xl text-amber-800 hover:scale-105 ease-in-out duration-150">
+            <div className="bg-amber-300 h-9 w-9 items-center rounded-full flex justify-center">
+              <LogIn size={25} />
+            </div>
+            <p className="font-bold text-xl">Login</p>
+          </div>
+        </Link>
       </div>
     </nav>
   );

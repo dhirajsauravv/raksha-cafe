@@ -18,7 +18,7 @@ function MenuCard({ item }) {
         </div>
         <div className="flex-none h-10">
           <button
-            className="w-full h-full rounded-3xl bg-amber-400 hover:bg-amber-400/75 hover:scale-105 ease-in-out duration-300"
+            className="w-full h-full rounded-3xl bg-amber-400 hover:bg-amber-400/75 hover:scale-105 ease-in-out duration-150"
             onClick={() => handleAddToCart(item)}
           >
             Add to cart
