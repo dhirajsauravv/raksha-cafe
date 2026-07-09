@@ -1,12 +1,14 @@
 import useCart from "../services/useCart";
 
 function CartItem({ item }) {
-  const { handleAddToCart, handleRemoveFromCart } = useCart();
+  const { handleAddToCart, handleRemoveFromCart, cart } = useCart();
+
+  let cartQuantityCounter = cart.reduce((acc, cur) => acc + cur.quantity, 0);
 
   return (
     <div className="pb-5 w-200">
       <div className="flex items-center justify-between bg-amber-50 rounded-3xl pr-4 shadow-lg">
-        <div className="flex items-center">
+        <div className="flex items-center w-2/6">
           <img
             className="w-30 h-30 rounded-3xl object-cover p-2 "
             src={item.image}
@@ -18,7 +20,7 @@ function CartItem({ item }) {
           </div>
         </div>
 
-        <h1 className="font-bold text-amber-700 text-lg ">
+        <h1 className="font-bold text-amber-700 text-lg w-1/6">
           {item.quantity * item.price}
         </h1>
 

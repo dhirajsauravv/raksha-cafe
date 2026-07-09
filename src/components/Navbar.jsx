@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import { Coffee, ShoppingCart, Menu, LogIn } from "lucide-react";
+import { CiLogout } from "react-icons/ci";
 import useAuth from "../services/useAuth";
 
 import useCart from "../services/useCart";
@@ -64,7 +65,7 @@ function Navbar() {
             onClick={logout}
           >
             <div className="bg-amber-300 h-9 w-9 items-center rounded-full flex justify-center">
-              <LogIn size={25} />
+              <CiLogout size={25} />
             </div>
             <p className="font-bold text-xl">Logout</p>
           </div>

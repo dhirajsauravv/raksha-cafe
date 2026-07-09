@@ -17,12 +17,12 @@ function App() {
       <div className="container max-w-full">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </div>
       <div className="container max-w-full mt-10 mb-15">
         <Routes>
           <Route path="/menu" element={<Menu />} />
-          <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/order" element={<Order />} />

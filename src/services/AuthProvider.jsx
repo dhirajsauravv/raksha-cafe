@@ -8,8 +8,10 @@ function AuthProvider({ children }) {
   async function login(email, password) {
     try {
       const response = await postSignInData(email, password);
+      console.log("Login Success");
       const token = response.data.token;
       setIsLoggedIn(true);
+      console.log("isLoggedIn set to true");
       console.log(token);
     } catch (error) {
       console.log(error);
