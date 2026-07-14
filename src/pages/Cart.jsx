@@ -5,6 +5,7 @@ import useAuth from "../services/useAuth";
 import { MdCoffeeMaker } from "react-icons/md";
 import { FaCoffee } from "react-icons/fa";
 import useOrders from "../services/useOrders";
+import axiosClient from "../services/axiosClient";
 
 function Cart() {
   const { cart, clearCart } = useCart();
@@ -12,6 +13,7 @@ function Cart() {
   const { placeOrder } = useOrders();
   const navigate = useNavigate();
   console.log("Logged In:", isLoggedIn);
+  console.log(cart);
 
   const subtotal = cart.reduce((total, item) => {
     return total + item.price * item.quantity;
@@ -19,14 +21,27 @@ function Cart() {
   const gst = Math.round(subtotal * 0.05);
   const total = subtotal + gst;
 
-  function handleCheckout() {
+  async function handleCheckout() {
     if (!isLoggedIn) {
       navigate("/login");
       return;
     }
-    placeOrder(cart, total);
-    clearCart();
-    navigate("/orders");
+    try {
+      const orderItems = cart.map((item) => ({
+        menuItem: item._id,
+        quantity: item.quantity,
+      }));
+      await axiosClient.post("/orders/checkout", orderItems, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      clearCart();
+      navigate("/orders");
+    } catch (error) {
+      console.error(error);
+      alert("Failed to place order.");
+    }
 
     return;
   }
@@ -46,7 +61,7 @@ function Cart() {
                 ))}
               </div>
             </div>
-            <div className=" bg-amber-100 rounded-3xl w-2/6 h-150 flex flex-col gap-4 m-10">
+            <div className=" bg-amber-100 rounded-3xl w-100 h-100 flex flex-col gap-4 m-10">
               <h1 className="text-center text-amber-700 font-bold text-3xl py-4">
                 Order Summary
               </h1>
@@ -55,15 +70,6 @@ function Cart() {
               <h1 className="font-bold text-xl pl-4">GST(5%): ₹{gst}</h1>
               <hr />
               <h2 className="font-bold text-xl pl-4">Total: ₹{total}</h2>
-              <hr />
-              <div className="pl-4">
-                <p className="font-bold text-xl">Add Note:</p>
-                <input
-                  type="text"
-                  placeholder="Enter Note"
-                  className="bg-white border field-sizing-fixed  text"
-                />
-              </div>
 
               <div className="flex flex-col justify-center items-center">
                 <button

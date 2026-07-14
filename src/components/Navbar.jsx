@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { Coffee, ShoppingCart, Menu, LogIn } from "lucide-react";
+import { Coffee, ShoppingCart, Menu, LogIn, Notebook } from "lucide-react";
 import { CiLogout } from "react-icons/ci";
 import useAuth from "../services/useAuth";
 
@@ -58,6 +58,16 @@ function Navbar() {
             </p>
           </div>
         </Link>
+
+        {isLoggedIn && (
+          <div className="flex bg-amber-200 rounded-3xl py-1 pl-1 pr-3 font-bold text-amber-800 text-xl p-1 items-center gap-2">
+            <div className="bg-amber-300 h-9 w-9 items-center rounded-full flex justify-center">
+              <Notebook size={25} />
+            </div>
+
+            <Link to="/orders">My orders</Link>
+          </div>
+        )}
 
         {isLoggedIn ? (
           <div
