@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AuthContext from "./AuthContext";
 import { postSignInData, postSignUpData } from "./authentication";
 
@@ -8,11 +8,10 @@ function AuthProvider({ children }) {
   async function login(email, password) {
     try {
       const response = await postSignInData(email, password);
-      console.log("Login Success");
+
       const token = response.data.token;
+      localStorage.setItem("token", token);
       setIsLoggedIn(true);
-      console.log("isLoggedIn set to true");
-      console.log(token);
     } catch (error) {
       console.log(error);
     }
@@ -22,16 +21,25 @@ function AuthProvider({ children }) {
     try {
       const response = await postSignUpData(name, email, password);
       const token = response.data.token;
+      localStorage.setItem("token", token);
       setIsLoggedIn(true);
-      console.log(token);
     } catch (error) {
       console.log(error);
     }
   }
 
   function logout() {
+    localStorage.removeItem("token");
     setIsLoggedIn(false);
   }
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   return (
     <AuthContext.Provider value={{ isLoggedIn, login, register, logout }}>

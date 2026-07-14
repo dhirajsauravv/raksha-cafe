@@ -4,11 +4,13 @@ import { useNavigate } from "react-router";
 import useAuth from "../services/useAuth";
 import { MdCoffeeMaker } from "react-icons/md";
 import { FaCoffee } from "react-icons/fa";
+import useOrders from "../services/useOrders";
 
 function Cart() {
-  const { cart } = useCart();
-  const navigate = useNavigate();
+  const { cart, clearCart } = useCart();
   const { isLoggedIn } = useAuth();
+  const { placeOrder } = useOrders();
+  const navigate = useNavigate();
   console.log("Logged In:", isLoggedIn);
 
   const subtotal = cart.reduce((total, item) => {
@@ -22,7 +24,9 @@ function Cart() {
       navigate("/login");
       return;
     }
-    navigate("/order");
+    placeOrder(cart, total);
+    clearCart();
+    navigate("/orders");
 
     return;
   }

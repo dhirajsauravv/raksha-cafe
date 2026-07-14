@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Menu from "./pages/Menu";
-import Order from "./pages/Order";
+import Orders from "./pages/Orders";
 import Checkout from "./pages/Checkout";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -25,7 +25,7 @@ function App() {
           <Route path="/menu" element={<Menu />} />
           <Route path="/login" element={<Login />} />
           <Route path="/checkout" element={<Checkout />} />
-          <Route path="/order" element={<Order />} />
+          <Route path="/orders" element={<Orders />} />
         </Routes>
       </div>
 

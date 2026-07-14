@@ -61,6 +61,13 @@ function CartProvider({ children }) {
     }
   }
 
+  function clearCart() {
+    setCart(() => {
+      localStorage.removeItem("cartData");
+      return [];
+    });
+  }
+
   useEffect(() => {
     const cartData = localStorage.getItem("cartData");
     setCart(cartData ? JSON.parse(cartData) : []);
@@ -68,7 +75,7 @@ function CartProvider({ children }) {
 
   return (
     <CartContext.Provider
-      value={{ cart, handleAddToCart, handleRemoveFromCart }}
+      value={{ cart, handleAddToCart, handleRemoveFromCart, clearCart }}
     >
       {children}
     </CartContext.Provider>
